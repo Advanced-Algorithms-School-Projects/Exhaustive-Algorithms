@@ -13,14 +13,16 @@ using namespace std;
 
 #include "d_except.h"
 #include "d_matrix.h"
-#include "graph.h"
+//#include "graph.h"
 #include "knapsack.h"
+
+void exhaustiveKnapsack(knapsack &k, int t); //finds the best knapsack
 
 int main()
 {
 	char x;
 	ifstream fin;
-	stack <int> moves;
+//	stack <int> moves;
 	string fileName;
 
 	// Read the name of the graph from the keyboard or
@@ -43,7 +45,7 @@ int main()
 		cout << "Reading knapsack instance" << endl;
 		knapsack k(fin);
 
-		exhaustiveKnapsack(k, 600);
+//		exhaustiveKnapsack(k, 600);
 
 		cout << endl << "Best solution" << endl;
 		k.printSolution();
@@ -58,4 +60,29 @@ int main()
 	{
 		cout << ex.what() << endl; exit(1);
 	}
+}
+
+void exhaustiveKnapsack(knapsack &k, int t) {
+	//function takes a knapsack input and a time input to exhaustively determine the best combination
+	//of items that maximizes the knapsach value while remaining under the cost limit
+
+	int costLimit = k.getCostLimit();
+	int numObjects = k.getNumObjects();
+
+	int numUnselected = 0;
+
+	while (numUnselected != numObjects) {
+
+		//do some stuff
+
+
+
+		numUnselected++;
+	}
+
+
+}
+
+void checkKnapsak(knapsack &k) {
+	//checks if current knapsack is best - if so updates
 }
