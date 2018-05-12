@@ -14,4 +14,70 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d_matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="d_except.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="d_random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="knapsack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="timing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p1a.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="p1b.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack.format">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack8.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack12.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack16.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack20.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack28.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack32.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack48.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack64.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack128.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack256.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack512.input">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack1024.input">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

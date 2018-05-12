@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\boost_1_57_0</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,6 +116,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="d_except.h" />
+    <ClInclude Include="d_matrix.h" />
+    <ClInclude Include="d_random.h" />
+    <ClInclude Include="knapsack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="p1a.cpp" />
+    <ClCompile Include="p1b.cpp" />
+    <ClCompile Include="timing.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack.format" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack1024.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack12.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack128.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack16.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack20.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack256.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack28.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack32.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack48.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack512.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack64.input" />
+    <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack8.input" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
