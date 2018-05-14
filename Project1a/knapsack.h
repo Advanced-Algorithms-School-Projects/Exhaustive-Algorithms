@@ -158,7 +158,6 @@ void knapsack::printSolution()
 	for (int i = 0; i < getNumObjects(); i++)
 		if (isSelected(i))
 			cout << i << "  " << getValue(i) << " " << getCost(i) << endl;
-
 	cout << endl;
 }
 
