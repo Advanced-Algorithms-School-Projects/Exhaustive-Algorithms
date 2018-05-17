@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="p1a.cpp" />
+    <ClCompile Include="p1b.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack.format" />

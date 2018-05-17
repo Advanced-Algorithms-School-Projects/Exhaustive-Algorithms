@@ -19,6 +19,8 @@ struct EdgeProperties;
 
 typedef adjacency_list<vecS, vecS, bidirectionalS, VertexProperties, EdgeProperties> Graph;
 
+int exhaustiveColoring(Graph &g, int numColors, int t);
+
 struct VertexProperties
 {
 	pair<int, int> cell; // maze cell (x,y) value
@@ -26,6 +28,7 @@ struct VertexProperties
 	bool visited;
 	bool marked;
 	int weight;
+	int color;
 };
 
 // Create a struct to hold properties for each edge
@@ -76,7 +79,7 @@ int main()
 	// Read the name of the graph from the keyboard or
 	// hard code it here for testing.
 
-	fileName = "/Users/wmeleis/2560-code/tree2/tree/graph1.txt";
+	fileName = "color12-3.input";
 
 	//   cout << "Enter filename" << endl;
 	//   cin >> fileName;
@@ -115,4 +118,8 @@ int main()
 	{
 		cout << ex.what() << endl; exit(1);
 	}
+}
+
+int exhaustiveColoring(Graph &g, int numColors, int t) {
+
 }

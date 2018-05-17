@@ -93,8 +93,11 @@ int knapsack::getCostLimit() const
 int knapsack::getValue(int i) const
 // Return the value of the ith object.
 {
-	if (i < 0 || i >= getNumObjects())
+	if (i < 0 || i >= getNumObjects()) {
+		cout << "getValue Error: i = " << i << endl;
+		system("pause");
 		throw rangeError("Bad value in knapsack::getValue");
+	}
 
 	return value[i];
 }
@@ -201,8 +204,11 @@ void knapsack::unSelect(int i)
 bool knapsack::isSelected(int i) const
 // Return true if object i is currently selected, and false otherwise.
 {
-	if (i < 0 || i >= getNumObjects())
+	if (i < 0 || i >= getNumObjects()) {
+		cout << "isSelected Error: i = " << i << endl;
+		system("pause");
 		throw rangeError("Bad value in knapsack::getValue");
+	}
 
 	return selected[i];
 }
