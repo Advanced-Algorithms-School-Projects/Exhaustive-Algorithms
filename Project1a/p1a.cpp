@@ -16,11 +16,12 @@ using namespace std;
 #include "knapsack.h"
 
 void exhaustiveKnapsack(knapsack &k, int t); //finds the best knapsack
-void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect);
+void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex);
 void checkKnapsack(knapsack &k, knapsack &bestSol);
 void softReset(knapsack &k, int currPos, int newPos);
 void hardReset(knapsack &k, int numUnSelect);
 void moveUnSelection(knapsack &k, int oldPos, int newPos);
+int timer(int t);
 
 int main()
 {
@@ -67,63 +68,54 @@ int main()
 	system("pause");
 }
 
+//function takes a knapsack input and a time input to exhaustively determine the best combination
+//of items that maximizes the knapsack value while remaining under the cost limit
 void exhaustiveKnapsack(knapsack &k, int t) {
-	//function takes a knapsack input and a time input to exhaustively determine the best combination
-	//of items that maximizes the knapsach value while remaining under the cost limit
-
+	clock_t startTime = clock();
 	knapsack bestSol = knapsack(k);
 	int numObjects = k.getNumObjects();
+	bool isfinished = false;
 
-	checkKnapsack(k, bestSol);
+	//while ((((float) (clock() - startTime) / CLOCKS_PER_SEC) != t) || isfinished) {
+		checkKnapsack(k, bestSol);
 
-	for (int j = 1; j <= numObjects; j++) {
-		int start = 0;
-		hardReset(k, j);
+		for (int j = 1; j < numObjects; j++) {
+			int start = 0;
+			hardReset(k, j);
 
-		RKT(k, bestSol, start, j);
-		system("pause");
-	}
+			RKT(k, bestSol, start, j, 0);
+		}
+
+		hardReset(k, 8);
+		checkKnapsack(k, bestSol);
+		isfinished = true;
+	//}
 
 	k = knapsack(bestSol);
+	cout << "Time: " << (float)(clock() - startTime) / CLOCKS_PER_SEC << endl <<"Best Solution:" << endl;
+	for (int i = 0; i < k.getNumObjects(); i++) {
+	cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
+	}
 	system("pause");
-
 }
 
-void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect) {
+void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex) {
 
-	int end = k.getNumObjects() - numUnSelect + start;
+	int end = k.getNumObjects() + unSelIndex - numUnSelect;
 
-	cout << "RKT end: " << end << ", NumObjects: " << k.getNumObjects() << ", numUnSelect: " << numUnSelect << ", start: " << start << endl;
-	system("pause");
 	for (int i = start; i <= end; i++) {
 		checkKnapsack(k, bestSol);
 		if (i == end) {
 			softReset(k, i, start + 1);
-			cout << "Option 1:" << endl;
-			for (int i = 0; i < k.getNumObjects(); i++) {
-				cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
-			}
-			system("pause");
 			return;
 		}
 		if ((i + 1) < k.getNumObjects()) {
-		if (!k.isSelected(i + 1)) {
-			cout << "Option 2:" << endl;
-			for (int i = 0; i < k.getNumObjects(); i++) {
-				cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
+			if (!k.isSelected(i + 1)) {
+				RKT(k, bestSol, i + 1, numUnSelect, unSelIndex + 1);
 			}
-			system("pause");
-			RKT(k, bestSol, i + 1, numUnSelect);
-		}
-		if (k.isSelected(i + 1)) {
-			moveUnSelection(k, i, i + 1);
-
-			cout << "Option 3:" << endl;
-			for (int i = 0; i < k.getNumObjects(); i++) {
-				cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
+			if (k.isSelected(i + 1)) {
+				moveUnSelection(k, i, i + 1);
 			}
-			system("pause");
-		}
 		}
 	}
 }
@@ -135,28 +127,11 @@ void checkKnapsack(knapsack &k, knapsack &bestSol) {
 }
 
 void softReset(knapsack &k, int currPos, int newPos) {
-
 	int j = 0;
 	for (int i = currPos; i < k.getNumObjects(); i++) {
 		moveUnSelection(k, i, newPos + j);
 		j++;
 	}
-	cout << "Soft Reset: " << endl;
-	for (int i = 0; i < k.getNumObjects(); i++) {
-		cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
-	}
-	system("pause");
-
-	/*
-	moveUnSelection(k, currPos, newPos);
-	cout << "Soft Reset: " << endl;
-	for (int i = 0; i < k.getNumObjects(); i++) {
-		cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
-	}
-	system("pause");
-	if ((currPos + 1) < k.getNumObjects()) {
-		softReset(k, currPos + 1, newPos + 1);
-	}*/
 	return;
 }
 
@@ -167,13 +142,6 @@ void hardReset(knapsack &k, int numUnSelect) {
 	for (int i = numUnSelect; i < k.getNumObjects(); i++) {
 		k.select(i);
 	}
-	cout << "Hard Reset:" << endl;
-	for (int i = 0; i < k.getNumObjects(); i++) {
-		cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
-	}
-	system("pause");
-
-
 }
 
 void moveUnSelection(knapsack &k, int oldPos, int newPos) {

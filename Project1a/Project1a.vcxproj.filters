@@ -32,9 +32,6 @@
     <ClCompile Include="p1a.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="p1b.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack.format">
