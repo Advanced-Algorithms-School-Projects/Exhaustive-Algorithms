@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\boost_1_57_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_66_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,7 +122,7 @@
     <ClInclude Include="knapsack.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="p1a.cpp" />
+    <ClCompile Include="p1b.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\Documents\Advanced Algorithms\Project 1\knapsack\knapsack.format" />
