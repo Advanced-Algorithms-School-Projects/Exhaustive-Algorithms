@@ -16,7 +16,7 @@ using namespace std;
 #include "knapsack.h"
 
 void exhaustiveKnapsack(knapsack &k, int t); //finds the best knapsack
-void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex);
+void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex, clock_t startT, int t);
 void checkKnapsack(knapsack &k, knapsack &bestSol);
 void softReset(knapsack &k, int currPos, int newPos);
 void hardReset(knapsack &k, int numUnSelect);
@@ -32,7 +32,7 @@ int main()
 	// Read the name of the graph from the keyboard or
 	// hard code it here for testing.
 
-	fileName = "knapsack8.input";
+	fileName = "knapsack28.input";
 
 	//cout << "Enter filename" << endl;
 	//cin >> fileName;
@@ -53,7 +53,6 @@ int main()
 
 		cout << endl << "Best solution" << endl;
 		k.printSolution();
-
 	}
 
 	catch (indexRangeError &ex)
@@ -74,32 +73,31 @@ void exhaustiveKnapsack(knapsack &k, int t) {
 	clock_t startTime = clock();
 	knapsack bestSol = knapsack(k);
 	int numObjects = k.getNumObjects();
-	bool isfinished = false;
 
-	//while ((((float) (clock() - startTime) / CLOCKS_PER_SEC) != t) || isfinished) {
-		checkKnapsack(k, bestSol);
+	checkKnapsack(k, bestSol);
 
-		for (int j = 1; j < numObjects; j++) {
-			int start = 0;
-			hardReset(k, j);
+	for (int j = 1; j < numObjects; j++) {
+		int start = 0;
+		hardReset(k, j);
 
-			RKT(k, bestSol, start, j, 0);
-		}
+		RKT(k, bestSol, start, j, 0, startTime, t);
+	}
 
-		hardReset(k, 8);
-		checkKnapsack(k, bestSol);
-		isfinished = true;
-	//}
+	hardReset(k, 8);
+	checkKnapsack(k, bestSol);
 
 	k = knapsack(bestSol);
-	cout << "Time: " << (float)(clock() - startTime) / CLOCKS_PER_SEC << endl <<"Best Solution:" << endl;
+	cout << "Time: " << (float)(clock() - startTime) / CLOCKS_PER_SEC << endl << "Best Solution:" << endl;
 	for (int i = 0; i < k.getNumObjects(); i++) {
-	cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
+		cout << "Object " << i << " selected: " << k.isSelected(i) << endl;
 	}
 	system("pause");
 }
 
-void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex) {
+void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIndex, clock_t startT, int t) {
+	if (((float)(clock() - startT) / CLOCKS_PER_SEC) >= t) {
+		return;
+	}
 
 	int end = k.getNumObjects() + unSelIndex - numUnSelect;
 
@@ -111,7 +109,10 @@ void RKT(knapsack &k, knapsack &bestSol, int start, int numUnSelect, int unSelIn
 		}
 		if ((i + 1) < k.getNumObjects()) {
 			if (!k.isSelected(i + 1)) {
-				RKT(k, bestSol, i + 1, numUnSelect, unSelIndex + 1);
+				RKT(k, bestSol, i + 1, numUnSelect, unSelIndex + 1, startT, t);
+				if (((float)(clock() - startT) / CLOCKS_PER_SEC) >= t) {
+					return;
+				}
 			}
 			if (k.isSelected(i + 1)) {
 				moveUnSelection(k, i, i + 1);
